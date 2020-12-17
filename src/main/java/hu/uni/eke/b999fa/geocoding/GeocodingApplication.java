@@ -5,38 +5,23 @@ import hu.uni.eke.b999fa.geocoding.service.LocationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.bind.annotation.*;
+
 
 import java.io.File;
 import java.nio.file.Files;
 
-
-/*@SpringBootApplication
-public class GeocodingApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(GeocodingApplication.class, args);
-	}
-}*/
-
 @SpringBootApplication
-//public class GeocodingApplication implements ApplicationRunner {
 public class GeocodingApplication implements CommandLineRunner {
 	@Autowired
 	ApplicationContext context;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GeocodingApplication.class, args);
-		/*new SpringApplicationBuilder(GeocodingApplication.class)
-				.web(WebApplicationType.NONE)
-				.run(args);*/
 	}
 
 	@Override
-	//public void run(ApplicationArguments args) throws Exception {
 	public void run(String... args) throws Exception {
 		LocationResultDao dao = context.getBean(LocationResultDao.class);
 		LocationsService locations = context.getBean(LocationsService.class);

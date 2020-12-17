@@ -43,20 +43,6 @@ public class LocationsServiceImpl implements LocationsService  {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonRoot = objectMapper.readTree(response.body());
 
-            //
-            // "OK" indicates that no errors occurred; the address was successfully parsed and at least one geocode was returned.
-            // "ZERO_RESULTS" indicates that the geocode was successful but returned no results. This may occur if the geocoder was passed a non-existent address.
-            //        OVER_DAILY_LIMIT indicates any of the following:
-            // The API key is missing or invalid.
-            //        Billing has not been enabled on your account.
-            //        A self-imposed usage cap has been exceeded.
-            //        The provided method of payment is no longer valid (for example, a credit card has expired).
-            //
-            // See the Maps FAQ to learn how to fix this.
-            // "OVER_QUERY_LIMIT" indicates that you are over your quota.
-            // "REQUEST_DENIED" indicates that your request was denied.
-            // "INVALID_REQUEST" generally indicates that the query (address, components or latlng) is missing.
-            // "UNKNOWN_ERROR" indicates that the request could not be processed due to a server error. The request may succeed if you try again.
             if (jsonRoot.isNull() || jsonRoot.get("status") == null) {
                 if (jsonRoot.get("message") != null)
                     throw new GeocodingApiException("Error while get geolocations from google maps api: " + jsonRoot.get("message").asText());
