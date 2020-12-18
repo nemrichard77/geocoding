@@ -33,7 +33,6 @@ public class LocationsServiceImpl implements LocationsService  {
             String encodedAddress = URLEncoder.encode(address, "UTF-8");
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://google-maps-geocoding.p.rapidapi.com/geocode/json?language=hu&address=" + encodedAddress))
-                    //.header("x-rapidapi-key", "3e43f1cf79msh08cf5167c10d409p12f125jsn45617abf4d6b")
                     .header("x-rapidapi-key", geocodeConfig.getAPI_KEY())
                     .header("x-rapidapi-host", "google-maps-geocoding.p.rapidapi.com")
                     .method("GET", HttpRequest.BodyPublishers.noBody())
